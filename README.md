@@ -1,4 +1,4 @@
-# example-docker-elixir-phoenix
+# docker-elixir-phoenix
 
 ## Usage
 
