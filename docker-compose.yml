@@ -1,0 +1,26 @@
+version: "2"
+services:
+    elixir:
+        build: ./build/elixir
+        command: mix phoenix.server
+        volumes:
+            - ./data:/app
+            - mix_data:/root/.mix/
+        links:
+            - postgres:postgresql
+        depends_on:
+            - postgres
+        ports:
+            - "4000:4000"
+    postgres:
+        build: ./build/postgres
+        volumes:
+            - db_data:/var/lib/postgresql/data
+        environment:
+            - POSTGRES_PASSWORD="password"
+            - POSTGRES_USER="user"
+            - POSTGRES_DB="phoenix"
+
+volumes:
+    mix_data:
+    db_data:
